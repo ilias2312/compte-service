@@ -1,0 +1,34 @@
+type Query {
+    allComptes: [Compte]
+    compteById(id: ID): Compte
+    totalSolde: TotalSolde
+}
+
+type Mutation {
+    saveCompte(compte: CompteRequest): Compte
+    updateCompte(id: ID, compte: CompteRequest): Compte
+    deleteCompte(id: ID): Boolean
+}
+
+enum TypeCompte {
+    COURANT
+    EPARGNE
+}
+
+type Compte {
+    id: ID
+    solde: Float
+    dateCreation: String
+    type: TypeCompte
+}
+
+input CompteRequest {
+    solde: Float
+    type: TypeCompte
+}
+
+type TotalSolde {
+    nombreComptes: Int
+    sommeSoldes: Float
+    moyenneSoldes: Float
+}
